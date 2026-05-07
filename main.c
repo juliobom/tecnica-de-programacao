@@ -14,7 +14,7 @@ git add (nome do arquivo)    //adiciona o arquivo para o próximo commit, ou sej
 
 git status   //mostra o status do repositório, ou seja, quais arquivos foram modificados, quais estão prontos para o commit, etc.
 
-git commit -m "mensagem do commit"   //cria um commit com as alterações adicionadas e a mensagem fornecida. O commit é um ponto de salvamento no histórico do projeto.
+git commit -m / git commit -am (ja adiciona commitando) "mensagem do commit"   //cria um commit com as alterações adicionadas e a mensagem fornecida. O commit é um ponto de salvamento no histórico do projeto.
 
 git log / git log --oneline   //mostra o histórico de commits do repositório. O comando "git log" exibe detalhes completos de cada commit, enquanto "git log --oneline" mostra uma versão resumida, com apenas o hash do commit e a mensagem.
 
