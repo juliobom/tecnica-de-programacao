@@ -18,6 +18,22 @@ typedef struct{
 }condicao;
 
 
+void ordene(produto *p,int tam){
+
+
+    for(int i=0;i<tam;i++){
+    p[i].data_validade = (p[i].ano-2025)*365 + (p[i].mes-1)*30 + p[i].dia;    
+    }
+    
+
+
+
+}
+
+
+
+
+
 void cadastrar_produto(produto *p,int tam, condicao *flag){
     int dia,mes,ano,count=0;
     flag->inserir = 1;
@@ -40,9 +56,11 @@ void cadastrar_produto(produto *p,int tam, condicao *flag){
             printf("Produto cadastrado com sucesso!\n");
             sleep(1);
             system("cls");
+            ordene(p,count);
             count ++;//----> futuramente vou retornar um valor para funcao de listagem ou (criar uma variavel dinamicamente) para saber quantos produtos foram cadastrados no total.
+            
         }
-        
+
         printf("Deseja cadastrar mais produto(s)? (1 - Sim, 0 - Nao): ");
         scanf("%d", &flag->inserir);
     }
