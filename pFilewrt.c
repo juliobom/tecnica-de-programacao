@@ -19,15 +19,15 @@ int main(){
         printf("digite o nome:\n");
         fgets(p.nome,50,stdin);
         p.nome[strcspn(p.nome, "\n")] = '\0'; //vai remosver o ' \n ' que o fgets coloca no final da string.
-        fprintf(pFile,"%s",p.nome);
+        fprintf(pFile,"%s\n",p.nome);
 
         printf("digite a idade:\n");
         scanf("%d",&p.idade);
-        fprintf(pFile," %d",p.idade);
+        fprintf(pFile,"%d\n",p.idade);
 
         printf("digite o peso:\n");
         scanf("%f",&p.peso);
-        fprintf(pFile," %.2fkg\n", p.peso);
+        fprintf(pFile,"%.2f\n", p.peso);
 
 
         printf("Deseja cadastrar mais pessoas? (1 - Sim, 0 - Nao): ");
