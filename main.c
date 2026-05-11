@@ -8,7 +8,7 @@
 
 typedef struct{
         char nome[50];
-        int data_validade,dia,mes,ano;
+        int data_validade,dia,mes,ano,venc;
         float preco;
 
 }produto;
@@ -47,6 +47,11 @@ void cadastrar_produto(produto *p,int tam, condicao *flag){
             scanf("%s", p[count].nome);
             printf("Digite a data de validade (formato dia / mes / ano): ");
             scanf("%d / %d / %d", &dia, &mes, &ano);
+                if(ano<2025 || (ano==2025 && mes<6) || (ano==2025 && mes==6 && dia<5)){
+                    p[count].venc = 1;
+                }
+                
+            
             printf("Digite o preço do produto: ");
             scanf("%f", &p[count].preco);
             p[count].dia = dia;
@@ -70,7 +75,10 @@ void listagem(produto *p, int tam, condicao *flag){
 
     for(int i=0;i<tam;i++){
 
-        printf("[%d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]\n", i+1, p[i].nome, p[i].dia, p[i].mes, p[i].ano, p[i].preco);
+        printf("[%d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]", i+1, p[i].nome, p[i].dia, p[i].mes, p[i].ano, p[i].preco);
+        if(p[i].venc==1){
+            printf(" (Produto vencido)\n");
+        }
     }
 
 
