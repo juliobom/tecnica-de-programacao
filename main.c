@@ -5,6 +5,8 @@
 #include <conio.h>
 
 
+//para margen de vencimento estebelecido dia presente em 05/06/2025, sem data for menor receberao um rotulo de ""produto vencido".
+
 
 typedef struct{
         char nome[50];
@@ -22,17 +24,13 @@ void ordene(produto *p,int tam){
 
 
     for(int i=0;i<tam;i++){
-    p[i].data_validade = (p[i].ano-2025)*365 + (p[i].mes-1)*30 + p[i].dia;    
+    p[i].data_validade = (p[i].ano-2025)*365 + (p[i].mes-1)*30 + p[i].dia;
+
+
+
     }
     
-
-
-
 }
-
-
-
-
 
 void cadastrar_produto(produto *p,int tam, condicao *flag){
     int dia,mes,ano,count=0;
@@ -71,7 +69,7 @@ void cadastrar_produto(produto *p,int tam, condicao *flag){
     }
 }
 
-void listagem(produto *p, int tam, condicao *flag){
+void listagem(produto *p, int tam, condicao *flag){     // flag vai ser usada para retornar ao menu principal quando nao querer mais listar os produtos.
 
     for(int i=0;i<tam;i++){
 
@@ -79,6 +77,7 @@ void listagem(produto *p, int tam, condicao *flag){
         if(p[i].venc==1){
             printf(" (Produto vencido)\n");
         }
+        printf("\n");
     }
 
 
@@ -87,6 +86,7 @@ void listagem(produto *p, int tam, condicao *flag){
 
 int main(){
 
+    int count;
     produto a[10];
     condicao flag;
     flag.prog = 1;
@@ -99,7 +99,9 @@ int main(){
             case 1:
                 printf("Cadastro de produto\n\n");
                 sleep(1);
-                cadastrar_produto(a, 10, &flag);
+                system("cls");
+                count = 0;              
+                cadastrar_produto(a, 10, &flag); //vai receber um ponteiro para uma variavel limite para saber quantos produtos foram cadastrados na hora de listar-los.
                 break;
             case 2:
                 listagem(a, 10, &flag);
@@ -108,8 +110,20 @@ int main(){
                 //vai remover um produto cadastrado
                 break;
             case 0:
-                printf("Saindo do programa...\n");
-                sleep(2);
+                count =0;
+                while (count<1)
+                {
+                    printf("Saindo do programa.");
+                    sleep(1);
+                    system("cls");
+                    printf("Saindo do programa..");
+                    sleep(1);
+                    system("cls");
+                    printf("Saindo do programa...");
+                    sleep(1);
+                    system("cls");
+                    count++;
+                }
                 break;
         }
     }
