@@ -51,12 +51,6 @@ void ordeneNome(int *tam,produto *key1){
     }
 }
 
-
-
-
-
-
-
 void cadastrar_produto(produto *prod, condicao *flag, int *list,produto *key1,produto *key2){     
     int dia,mes,ano;
     flag->inserir = 1;
@@ -126,6 +120,7 @@ void listagem(produto *prod, condicao *flag, int *list, produto *key1, produto *
                     printf("\n");
                 }
                 break;
+
             case 2:
                 for(int i=0;i<*list;i++){
 
@@ -136,6 +131,7 @@ void listagem(produto *prod, condicao *flag, int *list, produto *key1, produto *
                     printf("\n");
                 }
                 break;
+
             case 3:
             for(int i=0;i<*list;i++){
 
@@ -146,6 +142,7 @@ void listagem(produto *prod, condicao *flag, int *list, produto *key1, produto *
                 printf("\n");
             }
             break;
+            
         }
         
         printf("\ndeseja listar de outra forma? ( 1 - sim ) ( 0 - nao ): ");
