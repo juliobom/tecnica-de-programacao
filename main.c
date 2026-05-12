@@ -104,41 +104,47 @@ void cadastrar_produto(produto *prod, condicao *flag, int *list,produto *key1,pr
 
 void listagem(produto *prod, condicao *flag, int *list, produto *key1, produto *key2){
 
-    
-    for(int i=0;i<*list;i++){
+    flag->listar=5;
+    while(flag->listar!=0){
+        printf("Como deseja listar os produtos?\n1 - Nome:\n2 - Id:\n3 - lista padrão:\n\nDigite a opcao desejada:  ");
+        scanf("%d",&flag->listar);
+        
+        switch (flag->listar){
+            case 1:
+                for(int i=0;i<*list;i++){
 
-        printf("[%d] [id: %4.d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]", i+1, prod[i].id, prod[i].nome, prod[i].dia, prod[i].mes, prod[i].ano, prod[i].preco);
-        if(prod[i].venc==1){
-            printf(" (Produto vencido)");
+                    printf("[%d] [id: %4.d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]", i+1, prod[i].id, prod[i].nome, prod[i].dia, prod[i].mes, prod[i].ano, prod[i].preco);
+                    if(prod[i].venc==1){
+                        printf(" (Produto vencido)");
+                    }
+                    printf("\n");
+                }
+                break;
+            case 2:
+                for(int i=0;i<*list;i++){
+
+                    printf("[%d] [id: %4.d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]", i+1, key1[i].id, key1[i].nome, key1[i].dia, key1[i].mes, key1[i].ano, key1[i].preco);
+                    if(key1[i].venc==1){
+                    printf(" (Produto vencido)");
+                    }
+                    printf("\n");
+                }
+            case 3:
+            for(int i=0;i<*list;i++){
+
+                printf("[%d] [id: %4.d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]", i+1, key2[i].id, key2[i].nome, key2[i].dia, key2[i].mes, key2[i].ano, key2[i].preco);
+                if(key2[i].venc==1){
+                    printf(" (Produto vencido)");
+                }
+                printf("\n");
+            }
         }
-        printf("\n");
+        sleep(3);
     }
-
-    printf("listagem ordenada por nome\n");
-    for(int i=0;i<*list;i++){
-
-        printf("[%d] [id: %4.d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]", i+1, key1[i].id, key1[i].nome, key1[i].dia, key1[i].mes, key1[i].ano, key1[i].preco);
-        if(key1[i].venc==1){
-            printf(" (Produto vencido)");
-        }
-        printf("\n");
-    }
-
-    printf("listagem ordenada por id\n");
-    for(int i=0;i<*list;i++){
-
-        printf("[%d] [id: %4.d] [ produto: %s | data de validade: %d/%d/%d | preco: %.2f ]", i+1, key2[i].id, key2[i].nome, key2[i].dia, key2[i].mes, key2[i].ano, key2[i].preco);
-        if(key2[i].venc==1){
-            printf(" (Produto vencido)");
-        }
-        printf("\n");
-    }
-
-
-
 }
 
 int main(){
+    system("cls");
     srand(time(NULL));
     int count=0;
     produto prod[100], key1[100], key2[100];
@@ -148,7 +154,7 @@ int main(){
     flag.prog = 1;
     while(flag.prog != 0){
 
-        printf("\n1 - cadastrar um produto\n\n2 - listar os produtos\n\n3 - remover um produto\n\n0 - sair\n\nDigite a opcao desejada:  ");
+        printf("\n\n  1 - cadastrar um produto\n\n  2 - listar os produtos\n\n  3 - remover um produto\n\n  0 - sair\n\n  Digite a opcao desejada:  ");
         scanf("%d", &flag.prog);
             system("cls");
         switch (flag.prog){
