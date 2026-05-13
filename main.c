@@ -58,7 +58,7 @@ void buscador(produto *prod, int *list){
 
 }
 
-void cadastrar_produto(produto *prod, condicao *flag, int *list,produto *key1,produto *key2){     
+void cadastrar_produto(produto *prod, condicao *flag, int *list,produto *key1,produto *key2){      
     int dia,mes,ano;
     flag->inserir = 1;
     while(flag->inserir != 0){
@@ -182,7 +182,7 @@ int main(){
                 listagem(prod, &flag, list, key1, key2);     //vai receber um ponteiro para uma variavel limite para saber quantos produtos foram cadastrados para listar-los.
                 break;
             case 3:
-                flag.prog=1;
+                flag.prog=1; 
                 while(flag.prog!=0){
                     printf("como deseja buscar a entidade? ( 1 - nome | 2 - id ): ");
                     scanf("%d",&flag.prog);
@@ -190,7 +190,7 @@ int main(){
 
                         case 1:
                             
-                            buscador(key1,list);
+                            buscador(key1,list); //a keey1 e a key2 e pra ser somente um vetor o qual tem o indice da struct.
                             break;
                         case 2:
                             buscador(key2, list);
