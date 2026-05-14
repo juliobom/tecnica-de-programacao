@@ -162,6 +162,7 @@ int main(){
     srand(time(NULL));
     int count=0;
     produto prod[100], key1[100], key2[100];
+    int ky1[100],ky2[100];
     int* list = malloc(sizeof(int));
     *list = 0;
     condicao flag;
