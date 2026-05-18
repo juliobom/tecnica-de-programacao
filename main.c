@@ -57,7 +57,21 @@ void ordeneNome(int *tam,produto *prod, int *indnome){
 }
 
 int buscadornm(produto *prod, int *indnome,char Buscanome[], int fim, int ini){
+    if(ini>fim){
+        return -1;
+    }
+    int meio = (ini+fim)/2;
+    if(strcmp( prod[indnome[meio]].nome, Buscanome) == 0){
+        return indnome[meio];
+    }
 
+    if(strcmp(prod[indnome[meio]].nome, Buscanome) > 0){
+        return buscadornm( prod , indnome, Buscanome, meio - 1, ini);
+    }
+    else{
+        return buscadornm( prod, indnome, Buscanome, fim, meio+1);
+    }
+    return -1;
 }
 
 
@@ -119,6 +133,25 @@ void cadastrar_produto( produto *prod, condicao *flag, int *list, int *indnome, 
     }
 }
 
+void deletar(produto prod, int* lista, int *indnome, int *indid){
+    int flag = 1;
+    while (flag!=0){
+        system("cls");
+        printf("Deseja apagar o produto por ( 1-nome ) ( 2-ID ): ");
+        scanf("%d",&flag);
+        switch (flag){
+            case 1:
+                int inde = bucadornome(prod, lista)
+        }
+    }
+    {
+        /* code */
+    }
+    
+
+
+}
+
 void listagem(produto *prod, condicao *flag, int *list, int *indnome, int *indid){
 
     flag->listar=1;
@@ -174,8 +207,8 @@ int main(){
     condicao flag;
     char BuscaNome[50];
     int BuscaId;
-    int* list = malloc(sizeof(int));
-    *list = 0;
+    int *list = 0;
+    
 
     
 
@@ -183,7 +216,7 @@ int main(){
 
     while(flag.prog != 0){
 
-        printf("\n\n  1 - cadastrar um produto\n\n  2 - listar os produtos\n\n  3 - remover um produto\n\n  0 - sair\n\n  Digite a opcao desejada:  ");
+        printf("\n\n  1 - cadastrar um produto\n\n  2 - listar os produtos\n\n  3 - Buscar um produto\n\n  4 - Remover um produto \n\n  0 - sair\n\n  Digite a opcao desejada:  ");
         scanf("%d", &flag.prog);
             system("cls");
         switch (flag.prog){
@@ -200,12 +233,12 @@ int main(){
                 break;
 
             case 3:
-                if(*list==0){
+                /*if(*list==0){
                     printf("voce ainda nao cadastrou um produto. volte assim que tiver ao menos um produto cadastrado.");
                     sleep(2);
                     system("cls");
                     break;
-                }
+                }*/
                 flag.prog=1; 
                 while(flag.prog!=0){
                     printf("como deseja buscar a entidade? (1 - nome)  (2 - id)  (0 - sair): ");
@@ -213,18 +246,23 @@ int main(){
                     int ini=0,fim=*list-1;
                     scanf("%d",&flag.prog);
                     switch (flag.prog){
-                        case 0:
-                            break;
-
+                        
+                        
                         case 1:
-                        printf("Digite o nome desejado: ");
+                            printf("Digite o nome desejado: ");
                             scanf("%s",BuscaNome);
-                            
-                            buscadornm(prod, indnome, BuscaNome, fim, ini); //a keey1 e a key2 e pra ser somente um vetor o qual tem o indice da struct.
+                            int inde = buscadornm(prod, indnome, BuscaNome, fim, ini);
+                            if(inde == -1){
+                                printf("Nome Nao encontrado! tente novamente!");
+                                sleep(2);
+                                system("cls");
+                                break;
+                            }
+                            printf("\n[id: %d] | Produto: %s | Preco: %.2f R$\n\n", prod[inde].id, prod[inde].nome, prod[inde].preco); 
                             break;
-
+                        
                         case 2:
-                        printf("Digite o ID desejado: ");
+                            printf("Digite o ID desejado: ");
                             scanf("%d",&BuscaId);
                             int ind = buscadorid(prod, indid,BuscaId, fim, ini);
                             if(ind == -1){
@@ -233,11 +271,13 @@ int main(){
                                 system("cls");
                                 break;
                             }
-                            printf("[id: %d] | Produto: %s | Preco: %.2f R$\n", prod[ind].id, prod[ind].nome, prod[ind].preco);
+                            printf("\n[id: %d] | Produto: %s | Preco: %.2f R$\n\n", prod[ind].id, prod[ind].nome, prod[ind].preco);
                             break;
-
+                        case 0:
+                            break;
+                        
                         default:
-                            printf("Digite um numero valido! se 0 saira do loop.");
+                            printf("Digite um numero valido! se 3 saira do loop.");
                             sleep(1);
                             system("cls");
                             break;                           
@@ -267,6 +307,7 @@ int main(){
                 break;
         }
     }
+    free (list);
       
     return 0;
 }
