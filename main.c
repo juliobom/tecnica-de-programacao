@@ -132,25 +132,28 @@ void cadastrar_produto( produto *prod, condicao *flag, int *list, int *indnome, 
         scanf("%d", &flag->inserir);
     }
 }
-
-void deletar(produto prod, int* lista, int *indnome, int *indid){
+/*
+void deletar(produto *prod, int *indnome, int *indid, char BuscaNome[], int BuscaId, int ini, int fim){
     int flag = 1;
     while (flag!=0){
         system("cls");
         printf("Deseja apagar o produto por ( 1-nome ) ( 2-ID ): ");
         scanf("%d",&flag);
         switch (flag){
-            case 1:
-                int inde = bucadornome(prod, lista)
+            case 1:{
+                int ind = buscadornm(prod, indnome, BuscaNome, fim, ini);
+                break;
+            }
+            
+            case 2:{
+                int inde = buscadorid(prod, indid, BuscaId, fim , ini);
+                break;
+            }
         }
+        printf("deseja apagar outro produto? ( 1-sim ) ( 2-nao ): ");
     }
-    {
-        /* code */
-    }
-    
 
-
-}
+}*/
 
 void listagem(produto *prod, condicao *flag, int *list, int *indnome, int *indid){
 
@@ -215,7 +218,7 @@ int main(){
     flag.prog = 1;
 
     while(flag.prog != 0){
-
+        int ini=0,fim=*list-1;
         printf("\n\n  1 - cadastrar um produto\n\n  2 - listar os produtos\n\n  3 - Buscar um produto\n\n  4 - Remover um produto \n\n  0 - sair\n\n  Digite a opcao desejada:  ");
         scanf("%d", &flag.prog);
             system("cls");
@@ -243,7 +246,6 @@ int main(){
                 while(flag.prog!=0){
                     printf("como deseja buscar a entidade? (1 - nome)  (2 - id)  (0 - sair): ");
 
-                    int ini=0,fim=*list-1;
                     scanf("%d",&flag.prog);
                     switch (flag.prog){
                         
@@ -286,7 +288,7 @@ int main(){
                 break;
 
             case 4:
-                //vai remover um produto cadastrado
+                //deletar( prod, indnome, indid, BuscaNome, BuscaId, ini, fim);
                 break;
 
             case 0:
