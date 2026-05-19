@@ -194,15 +194,16 @@ void listagem(produto *prod, condicao *flag, int *list, int *indnome, int *indid
         printf("Como deseja listar os produtos?\n1 - Padrão:\n2 - Nome:\n3 - lista Id:\n\nDigite a opcao desejada:  ");
         scanf("%d",&flag->listar);
         system("cls");
-
+        int count = 1;
         switch (flag->listar){
 
             case 1:{
                 for(int i=0;i<*list;i++){
                     if(prod[i].del!=0){
                         
-                        printf("[%d] [id: %4.d] [ produto: %s |  preco: %.2f ]", i+1, prod[i].id, prod[i].nome, prod[i].preco);
+                        printf("[%d] [id: %4.d] [ produto: %s |  preco: %.2f ]", count, prod[i].id, prod[i].nome, prod[i].preco);
                         printf("\n");
+                        count++;
                     }
                     
                 }
@@ -213,9 +214,9 @@ void listagem(produto *prod, condicao *flag, int *list, int *indnome, int *indid
 
                     if(prod[indnome[i]].del!=0){
                         
-                        printf("[%d] [id: %4.d] [ produto: %s | preco: %.2f ]", i+1, prod[indnome[i]].id, prod[indnome[i]].nome, prod[indnome[i]].preco);
+                        printf("[%d] [id: %4.d] [ produto: %s | preco: %.2f ]", count, prod[indnome[i]].id, prod[indnome[i]].nome, prod[indnome[i]].preco);
                         printf("\n");
-
+                        count++;
                     }
                 }
                 break;
@@ -224,8 +225,9 @@ void listagem(produto *prod, condicao *flag, int *list, int *indnome, int *indid
                 for(int i=0;i<*list;i++){
 
                     if(prod[indid[i]].del!=0){
-                        printf("[%d] [id: %4.d] [ produto: %s | preco: %.2f ]", i+1, prod[indid[i]].id, prod[indid[i]].nome, prod[indid[i]].preco);
+                        printf("[%d] [id: %4.d] [ produto: %s | preco: %.2f ]", count, prod[indid[i]].id, prod[indid[i]].nome, prod[indid[i]].preco);
                         printf("\n");
+                        count++;
                     }
                 }
                 break;
@@ -240,7 +242,7 @@ void listagem(produto *prod, condicao *flag, int *list, int *indnome, int *indid
 
 int main(){
     
-    limpeza();
+    
     srand(time(NULL));
     
     produto prod[100];
@@ -252,7 +254,7 @@ int main(){
     flag.prog = 1;
 
     while(flag.prog != 0){
-
+        limpeza();
         printf("\n\n  1 - cadastrar um produto\n\n  2 - listar os produtos\n\n  3 - Buscar um produto\n\n  4 - Remover um produto \n\n  0 - sair\n\n  Digite a opcao desejada:  ");
         scanf("%d", &flag.prog);
             limpeza();
@@ -277,9 +279,9 @@ int main(){
                 
                 flag.listar=1; 
                 while(flag.listar!=0){
+                    limpeza();
                     printf("como deseja buscar a entidade? (1 - nome)  (2 - id)  (0 - sair): ");
 
-                    
                     scanf("%d",&flag.listar);
                     switch (flag.listar){
                         
@@ -292,7 +294,7 @@ int main(){
                             int inde = buscadornm(prod, indnome, BuscaNome, fim, ini);
                             if(inde == -1){
                                 printf("Nome Nao encontrado! tente novamente!");
-                                limpeza();
+                                sleep(2);
                                 break;
                             }
                             printf("\n[id: %d] | Produto: %s | Preco: %.2f R$\n\n", prod[inde].id, prod[inde].nome, prod[inde].preco); 
@@ -305,7 +307,6 @@ int main(){
                             if(ind == -1){
                                 printf("ID Nao encontrado! tente novamente!");
                                 sleep(2);
-                                limpeza();
                                 break;
                             }
                             printf("\n[id: %d] | Produto: %s | Preco: %.2f R$\n\n", prod[ind].id, prod[ind].nome, prod[ind].preco);
