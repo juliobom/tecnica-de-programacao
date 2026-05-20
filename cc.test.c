@@ -294,10 +294,11 @@ int main(){
                             int inde = buscadornm(prod, indnome, BuscaNome, fim, ini);
                             if(inde == -1){
                                 printf("Nome Nao encontrado! tente novamente!");
-                                sleep(2);
+                                system("pause");
                                 break;
                             }
-                            printf("\n[id: %d] | Produto: %s | Preco: %.2f R$\n\n", prod[inde].id, prod[inde].nome, prod[inde].preco); 
+                            printf("\n[id: %d] | Produto: %s | Preco: %.2f R$\n\n", prod[inde].id, prod[inde].nome, prod[inde].preco);
+                            system("pause");
                             break;
                         }
                         case 2:{
@@ -310,6 +311,7 @@ int main(){
                                 break;
                             }
                             printf("\n[id: %d] | Produto: %s | Preco: %.2f R$\n\n", prod[ind].id, prod[ind].nome, prod[ind].preco);
+                            
                             break;
                         }                        
                         default:{
@@ -328,19 +330,10 @@ int main(){
                 break;
             }
             case 0:{
-                int count =0;
-                while (count<1)
-                {
-                    printf("Saindo do programa.");
-                        sleep(1);
-                        limpeza();
-                    printf("Saindo do programa..");
-                        sleep(1);
-                        limpeza();
-                    printf("Saindo do programa...");
-                        sleep(1);
-                        limpeza();
-                    count++;
+                printf("saindo do programa");
+                for(int i=0;i<3;i++){
+                    sleep(1);
+                    printf(".");
                 }
                 break;
             }
